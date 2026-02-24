@@ -669,12 +669,37 @@
           </article>
         </div>
 
-        <div id="interview-panel" class="hidden">
-            <div id="interview-section"></div>
+        <div id="interview-panel" class="">
+            <div id="interview-section">
+                <div id="interview-empty" class="rounded-xl border border-slate-200 bg-white p-10 text-center">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100">
+                        <svg class="h-9 w-9 text-indigo-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="2" />
+                        <path d="M14 3v4h4" stroke="currentColor" stroke-width="2" />
+                        <path d="M8 12h8M8 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="mt-4 text-base font-bold text-slate-900">No jobs available</h3>
+                    <p class="mt-1 text-sm text-slate-500">Check back soon for new job opportunities</p>
+                </div>
+            </div>
         </div>
 
-        <div id="rejected-panel" class="hidden">
-            <div id="rejected-section" class="space-y-4"></div>
+        <div id="rejected-panel" class="">
+            <div id="rejected-section" class="space-y-4">
+                <!-- Rejected Empty State -->
+                <div id="rejected-empty" class=" rounded-xl border border-slate-200 bg-white p-10 text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-100">
+                    <svg class="h-9 w-9 text-indigo-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="2" />
+                    <path d="M14 3v4h4" stroke="currentColor" stroke-width="2" />
+                    <path d="M8 12h8M8 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3 class="mt-4 text-base font-bold text-slate-900">No jobs available</h3>
+                <p class="mt-1 text-sm text-slate-500">Check back soon for new job opportunities</p>
+                </div>
+            </div>
         </div>
         </div>
       </section>

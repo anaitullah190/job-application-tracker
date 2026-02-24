@@ -100,6 +100,35 @@ const tabAll = document.getElementById("tabAll");
 const tabInterview = document.getElementById("tabInterview");
 const tabRejected = document.getElementById("tabRejected");
 
+const interviewEmpty = document.getElementById("interview-empty");
+const rejectedEmpty = document.getElementById("rejected-empty");
+
+// ===== Empty state: show ONLY for active tab =====
+function toggleEmptyStates() {
+  const interviewCount = cardsContainer.querySelectorAll(
+    '.job-card[data-status="INTERVIEW"]'
+  ).length;
+
+  const rejectedCount = cardsContainer.querySelectorAll(
+    '.job-card[data-status="REJECTED"]'
+  ).length;
+
+  const isInterview = tabInterview.getAttribute("data-active") === "true";
+  const isRejected = tabRejected.getAttribute("data-active") === "true";
+
+  // default: hide both
+  if (interviewEmpty) interviewEmpty.classList.add("hidden");
+  if (rejectedEmpty) rejectedEmpty.classList.add("hidden");
+
+  // show only active tab empty state if count = 0
+  if (isInterview && interviewEmpty) {
+    interviewEmpty.classList.toggle("hidden", interviewCount !== 0);
+  }
+
+  if (isRejected && rejectedEmpty) {
+    rejectedEmpty.classList.toggle("hidden", rejectedCount !== 0);
+  }
+}
 
 function updateCounts() {
   const cards = cardsContainer.querySelectorAll(".job-card");
@@ -113,6 +142,8 @@ function updateCounts() {
   statRejected.innerText = cardsContainer.querySelectorAll(
     '.job-card[data-status="REJECTED"]'
   ).length;
+
+  toggleEmptyStates();
 }
 
 function setActiveTab(status) {
@@ -137,16 +168,20 @@ function filterCards(status) {
   });
 
   setActiveTab(status);
+  toggleEmptyStates();
 }
 
+// ===== Tabs =====
 tabAll.addEventListener("click", () => filterCards("ALL"));
 tabInterview.addEventListener("click", () => filterCards("INTERVIEW"));
 tabRejected.addEventListener("click", () => filterCards("REJECTED"));
 
+// ===== Buttons (Event Delegation) =====
 document.addEventListener("click", (e) => {
   const card = e.target.closest(".job-card");
   if (!card) return;
 
+  // Interview
   if (e.target.closest(".btn-interview")) {
     card.dataset.status = "INTERVIEW";
 
@@ -166,6 +201,7 @@ document.addEventListener("click", (e) => {
     return;
   }
 
+  // Rejected
   if (e.target.closest(".btn-rejected")) {
     card.dataset.status = "REJECTED";
 
@@ -185,6 +221,7 @@ document.addEventListener("click", (e) => {
     return;
   }
 
+  // Delete
   if (e.target.closest(".delete-btn")) {
     card.remove();
     updateCounts();
@@ -200,6 +237,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-
+// ===== Init =====
 updateCounts();
 filterCards("ALL");
