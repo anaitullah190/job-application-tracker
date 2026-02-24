@@ -10,7 +10,6 @@
       rel="stylesheet"
       type="text/css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
       rel="stylesheet"
@@ -33,14 +32,13 @@
         </h1>
       </header>
 
-      <!-- Summary stats -->
       <section
         class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3"
         aria-label="Job summary stats"
       >
         <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
           <p class="text-xs font-medium text-slate-500">Total</p>
-          <p id="statTotal" class="mt-1 text-2xl font-extrabold">0</p>
+          <p id="statTotal" class="mt-1 text-2xl font-extrabold">8</p>
         </div>
 
         <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -49,7 +47,7 @@
             id="statInterview"
             class="mt-1 text-2xl font-extrabold text-emerald-600"
           >
-            0
+            
           </p>
         </div>
 
@@ -59,27 +57,23 @@
             id="statRejected"
             class="mt-1 text-2xl font-extrabold text-rose-600"
           >
-            0
+            
           </p>
         </div>
       </section>
 
-      <!-- Jobs Section -->
       <section
         class="mt-6 overflow-hidden bg-white"
         aria-labelledby="jobsTitle"
       >
-        <!-- Title left + count right -->
-        <div
-          class="flex items-center justify-between gap-3 px-4 py-3"
-        >
+
+        <div class="flex items-center justify-between gap-3 px-4 py-3">
           <h2 id="jobsTitle" class="text-sm font-extrabold">Available Jobs</h2>
           <p class="text-xs font-medium text-slate-500">
-            <span id="jobsCount">0</span> jobs
+            <span id="jobsCount"></span> jobs
           </p>
         </div>
 
-        <!-- Tabs -->
         <div class="border-b border-slate-200 px-4 py-3">
           <div
             class="inline-flex rounded-sm bg-white p-1"
@@ -87,7 +81,7 @@
             aria-label="Job filters"
           >
             <button
-              class="tab px-3 py-1.5 text-xs font-bold rounded-sm data-[active=true]:bg-blue-50 data-[active=true]:text-blue-700"
+              class="job-tabs tab px-3 py-1.5 text-xs font-bold rounded-sm data-[active=true]:bg-blue-50 data-[active=true]:text-blue-700"
               role="tab"
               id="tabAll"
               data-active="true"
@@ -96,7 +90,7 @@
               All
             </button>
             <button
-              class="tab px-3 py-1.5 text-xs font-bold rounded-sm data-[active=true]:bg-blue-50 data-[active=true]:text-blue-700"
+              class="job-tabs tab px-3 py-1.5 text-xs font-bold rounded-sm data-[active=true]:bg-blue-50 data-[active=true]:text-blue-700"
               role="tab"
               id="tabInterview"
               type="button"
@@ -104,7 +98,7 @@
               Interview
             </button>
             <button
-              class="tab px-3 py-1.5 text-xs font-bold rounded-sm data-[active=true]:bg-blue-50 data-[active=true]:text-blue-700"
+              class="job-tabs tab px-3 py-1.5 text-xs font-bold rounded-sm data-[active=true]:bg-blue-50 data-[active=true]:text-blue-700"
               role="tab"
               id="tabRejected"
               type="button"
@@ -114,61 +108,59 @@
           </div>
         </div>
 
-        <!-- Panel -->
         <div id="allJobs" class="mt-4">
-          <article
-            class="relative overflow-hidden bg-white shadow-sm"
-          >
-            <div class="flex flex-col gap-4">
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+          <article class="relative overflow-hidden bg-white shadow-sm">
+            <div id="cards-container" class="flex flex-col gap-4">
+                <!-- Card 1 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j1"
+                data-status="ALL"
+              >
+                <!-- delete button -->
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                      DataViz Solutions
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      Data Visualization Specialist
                     </p>
                   </header>
 
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
-                      >$130,000 – $175,000</span
+                    <span class="salary font-medium text-slate-700"
+                      >$125,000 - $165,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
                       NOT APPLIED
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Build cross-platform mobile applications using React
+                    Native...
                   </p>
 
                   <!-- Actions -->
@@ -177,511 +169,496 @@
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+               <!-- Card 2 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j2"
+                data-status="ALL"
+              >
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                      WebFlow Agency
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      Web Designer & Developer
                     </p>
                   </header>
 
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
-                      >$130,000 – $175,000</span
+                    <span class="salary font-medium text-slate-700"
+                      >$160,000 – $195,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
                       NOT APPLIED
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.
                   </p>
 
-                  <!-- Actions -->
                   <div
                     class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+               <!-- Card 3 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j3"
+                data-status="ALL"
+              >
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                     DataViz Solutions
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      Data Visualization Specialist
                     </p>
                   </header>
 
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
-                      >$130,000 – $175,000</span
+                    <span class="salary font-medium text-slate-700"
+                      >$1450,000 – $155,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
                       NOT APPLIED
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.
                   </p>
 
-                  <!-- Actions -->
                   <div
                     class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+               <!-- Card 4 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j4"
+                data-status="ALL"
+              >
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                      CloudFirst Inc
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      Backend Developer
                     </p>
                   </header>
 
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
+                    <span class="salary font-medium text-slate-700"
                       >$130,000 – $175,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
                       NOT APPLIED
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.
                   </p>
-
-                  <!-- Actions -->
                   <div
                     class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+               <!-- Card 5 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j5"
+                data-status="ALL"
+              >
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                      Innovation Labs
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      UI/UX Engineer
                     </p>
                   </header>
 
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
+                    <span class="salary font-medium text-slate-700"
                       >$130,000 – $175,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
                       NOT APPLIED
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.
                   </p>
 
-                  <!-- Actions -->
                   <div
                     class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+               <!-- Card 6 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j6"
+                data-status="ALL"
+              >
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                      MegaCorp Solutions
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      JavaScript Developer
                     </p>
                   </header>
-
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
+                    <span class="salary font-medium text-slate-700"
                       >$130,000 – $175,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
-                      NOT APPLIED
+                      
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation and professional development opportunities.
                   </p>
-
-                  <!-- Actions -->
                   <div
                     class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+               <!-- Card 7 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j7"
+                data-status="ALL"
+              >
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                     StartupXYZ
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      Full Stack Engineer
                     </p>
                   </header>
 
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
-                      >$130,000 – $175,000</span
+                    <span class="salary font-medium text-slate-700"
+                      >$110,000 – $195,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
                       NOT APPLIED
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity included.
                   </p>
 
-                  <!-- Actions -->
                   <div
                     class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
                   </div>
                 </div>
               </div>
-              <div class="border border-slate-200">
-                <!-- Top-right delete icon -->
+               <!-- Card 8 -->
+              <div
+                class="job-card relative border border-slate-200"
+                data-id="j8"
+                data-status="ALL"
+              >
+
                 <button
                   type="button"
                   aria-label="Delete"
-                  class="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="delete-btn absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500"
                 >
-                  <!-- Trash icon -->
                   <i class="fa-solid fa-trash"></i>
                 </button>
+
                 <div class="p-4 sm:p-6">
-                  <!-- Header -->
+
                   <header class="pr-12">
                     <h3
-                      class="text-base font-semibold text-slate-900 sm:text-lg"
+                      class="company text-base font-semibold text-slate-900 sm:text-lg"
                     >
-                      Mobile First Corp
+                      TechCorp Industries
                     </h3>
-                    <p class="mt-1 text-sm text-slate-500">
-                      React Native Developer
+                    <p class="position mt-1 text-sm text-slate-500">
+                      Senior Frontend Developer
                     </p>
                   </header>
 
-                  <!-- Meta line -->
                   <div
                     class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-slate-500"
                   >
-                    <span>Remote</span>
+                    <span class="location">Remote</span>
                     <span class="text-slate-300">•</span>
-                    <span>Full-time</span>
+                    <span class="type">Full-time</span>
                     <span class="text-slate-300">•</span>
-                    <span class="font-medium text-slate-700"
-                      >$130,000 – $175,000</span
+                    <span class="salary font-medium text-slate-700"
+                      >$100,000 – $155,000</span
                     >
                   </div>
 
-                  <!-- Status pill -->
                   <div class="mt-4">
                     <span
-                      class="inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
+                      class="status-pill inline-flex items-center rounded-md bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700"
                     >
                       NOT APPLIED
                     </span>
                   </div>
 
-                  <!-- Description -->
-                  <p class="mt-4 text-sm leading-6 text-slate-600">
-                    Build cross-platform mobile applications using React Native.
-                    Work on products used by millions of users worldwide.
+                  <p class="description mt-4 text-sm leading-6 text-slate-600">
+                    Build scalable web applications using React and TypeScript. Work with a talented team on cutting-edge projects.
                   </p>
 
-                  <!-- Actions -->
                   <div
                     class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
                   >
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
+                      class="btn-interview inline-flex w-full items-center justify-center rounded-lg border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 sm:w-auto"
                     >
                       INTERVIEW
                     </button>
 
                     <button
                       type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-200 sm:w-auto"
+                      class="btn-rejected inline-flex w-full items-center justify-center rounded-lg border border-rose-300 bg-white px-4 py-2 text-sm font-semibold text-rose-700 sm:w-auto"
                     >
                       REJECTED
                     </button>
@@ -690,6 +667,15 @@
               </div>
             </div>
           </article>
+        </div>
+
+        <div id="interview-panel" class="hidden">
+            <div id="interview-section"></div>
+        </div>
+
+        <div id="rejected-panel" class="hidden">
+            <div id="rejected-section" class="space-y-4"></div>
+        </div>
         </div>
       </section>
     </div>

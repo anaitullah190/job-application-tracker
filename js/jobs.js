@@ -89,4 +89,117 @@ const jobs = [
   },
 ];
 
+const cardsContainer = document.getElementById("cards-container");
 
+const totalJobs = document.getElementById("statTotal");
+const jobCount = document.getElementById("jobsCount");
+const statInterview = document.getElementById("statInterview");
+const statRejected = document.getElementById("statRejected");
+
+const tabAll = document.getElementById("tabAll");
+const tabInterview = document.getElementById("tabInterview");
+const tabRejected = document.getElementById("tabRejected");
+
+
+function updateCounts() {
+  const cards = cardsContainer.querySelectorAll(".job-card");
+  totalJobs.innerText = cards.length;
+  jobCount.innerText = cards.length;
+
+  statInterview.innerText = cardsContainer.querySelectorAll(
+    '.job-card[data-status="INTERVIEW"]'
+  ).length;
+
+  statRejected.innerText = cardsContainer.querySelectorAll(
+    '.job-card[data-status="REJECTED"]'
+  ).length;
+}
+
+function setActiveTab(status) {
+  tabAll.removeAttribute("data-active");
+  tabInterview.removeAttribute("data-active");
+  tabRejected.removeAttribute("data-active");
+
+  if (status === "ALL") tabAll.setAttribute("data-active", "true");
+  if (status === "INTERVIEW") tabInterview.setAttribute("data-active", "true");
+  if (status === "REJECTED") tabRejected.setAttribute("data-active", "true");
+}
+
+function filterCards(status) {
+  const cards = cardsContainer.querySelectorAll(".job-card");
+
+  cards.forEach((card) => {
+    if (status === "ALL") {
+      card.classList.remove("hidden");
+    } else {
+      card.classList.toggle("hidden", card.dataset.status !== status);
+    }
+  });
+
+  setActiveTab(status);
+}
+
+tabAll.addEventListener("click", () => filterCards("ALL"));
+tabInterview.addEventListener("click", () => filterCards("INTERVIEW"));
+tabRejected.addEventListener("click", () => filterCards("REJECTED"));
+
+document.addEventListener("click", (e) => {
+  const card = e.target.closest(".job-card");
+  if (!card) return;
+
+  if (e.target.closest(".btn-interview")) {
+    card.dataset.status = "INTERVIEW";
+
+    const pill = card.querySelector(".status-pill");
+    if (pill) pill.innerText = "INTERVIEW";
+
+    updateCounts();
+
+    const active =
+      tabInterview.getAttribute("data-active") === "true"
+        ? "INTERVIEW"
+        : tabRejected.getAttribute("data-active") === "true"
+        ? "REJECTED"
+        : "ALL";
+
+    filterCards(active);
+    return;
+  }
+
+  if (e.target.closest(".btn-rejected")) {
+    card.dataset.status = "REJECTED";
+
+    const pill = card.querySelector(".status-pill");
+    if (pill) pill.innerText = "REJECTED";
+
+    updateCounts();
+
+    const active =
+      tabInterview.getAttribute("data-active") === "true"
+        ? "INTERVIEW"
+        : tabRejected.getAttribute("data-active") === "true"
+        ? "REJECTED"
+        : "ALL";
+
+    filterCards(active);
+    return;
+  }
+
+  if (e.target.closest(".delete-btn")) {
+    card.remove();
+    updateCounts();
+
+    const active =
+      tabInterview.getAttribute("data-active") === "true"
+        ? "INTERVIEW"
+        : tabRejected.getAttribute("data-active") === "true"
+        ? "REJECTED"
+        : "ALL";
+
+    filterCards(active);
+  }
+});
+
+
+updateCounts();
+filterCards("ALL");
